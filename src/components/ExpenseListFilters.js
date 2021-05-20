@@ -65,7 +65,6 @@ class ExpenseListFilters extends Component {
 					selectsStart
 					startDate={this.state.startDate}
 					endDate={this.state.endDate}
-					isClearable
 					withPortal
 				/>
 				<DatePicker
@@ -78,7 +77,6 @@ class ExpenseListFilters extends Component {
 					startDate={this.state.startDate}
 					endDate={this.state.endDate}
 					minDate={this.state.startDate}
-					isClearable
 					withPortal
 				/>
 				<button onClick={this.setDateRangeClicked}>Set Range</button>
