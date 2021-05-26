@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 export default class ExpenseForm extends Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			description: props.expense ? props.expense.description : "",
 			note: props.expense ? props.expense.note : "",
@@ -14,7 +15,6 @@ export default class ExpenseForm extends Component {
 			error: "",
 		};
 	}
-
 	onDescriptionChange = (e) => {
 		const description = e.target.value;
 		this.setState(() => ({ description }));
@@ -36,9 +36,10 @@ export default class ExpenseForm extends Component {
 	};
 	onSubmit = (e) => {
 		e.preventDefault();
+
 		if (!this.state.description || !this.state.amount) {
 			this.setState(() => ({
-				error: "Please provide description and amount !!",
+				error: "Please provide description and amount.",
 			}));
 		} else {
 			this.setState(() => ({ error: "" }));
