@@ -7,6 +7,8 @@ import { startSetExpenses } from "./actions/expenses";
 import { login, logout } from "./actions/auth";
 import { Provider } from "react-redux";
 import { firebase } from "../src/firebase/firebase";
+import LoadingPage from "./components/LoadingPage"
+import "./styles/styles.scss";
 
 const store = configureStore();
 
@@ -16,7 +18,7 @@ const jsx = (
 	</Provider>
 );
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById("root"));
+ReactDOM.render(<LoadingPage />, document.getElementById("root"));
 
 let hasRendered = false;
 const renderApp = () => {

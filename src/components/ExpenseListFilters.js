@@ -36,51 +36,70 @@ class ExpenseListFilters extends Component {
 	};
 	render() {
 		return (
-			<div>
-				<input
-					type="text"
-					placeholder="Enter your search text here..."
-					value={this.props.filters.text}
-					onChange={(e) => {
-						this.props.dispatch(setTextFilter(e.target.value));
-					}}
-				/>
-				<select
-					value={this.props.filters.sortBy}
-					onChange={(e) => {
-						e.target.value === "date"
-							? this.props.dispatch(sortByDate("date"))
-							: this.props.dispatch(sortByAmount("amount"));
-					}}>
-					<option value="date">Date</option>
-					<option value="amount">Amount</option>
-				</select>
+			<div className="content-container">
+				<div className="input-group">
+					<div className="input-group__item">
+						<input
+							type="text"
+							className="text-input"
+							placeholder="Enter your search text here..."
+							value={this.props.filters.text}
+							onChange={(e) => {
+								this.props.dispatch(setTextFilter(e.target.value));
+							}}
+						/>
+					</div>
+					<div className="input-group__item">
+						<select
+							value={this.props.filters.sortBy}
+							className="select"
+							onChange={(e) => {
+								e.target.value === "date"
+									? this.props.dispatch(sortByDate("date"))
+									: this.props.dispatch(sortByAmount("amount"));
+							}}>
+							<option value="date">Date</option>
+							<option value="amount">Amount</option>
+						</select>
+					</div>
+					<div className="input-group__item">
+						<DatePicker
+							placeholderText="Start Date"
+							className="select"
+							selected={this.state.startDate}
+							onChange={(date) => {
+								this.setState(() => ({ startDate: date }));
+							}}
+							selectsStart
+							startDate={this.state.startDate}
+							endDate={this.state.endDate}
+							withPortal
+						/>
+					</div>
+					<div className="input-group__item">
+						<DatePicker
+							placeholderText="End Date"
+							className="select"
+							selected={this.state.endDate}
+							onChange={(date) => {
+								this.setState(() => ({ endDate: date }));
+							}}
+							selectsEnd
+							startDate={this.state.startDate}
+							endDate={this.state.endDate}
+							minDate={this.state.startDate}
+							withPortal
+						/>
+					</div>
 
-				<DatePicker
-					placeholderText="Start Date"
-					selected={this.state.startDate}
-					onChange={(date) => {
-						this.setState(() => ({ startDate: date }));
-					}}
-					selectsStart
-					startDate={this.state.startDate}
-					endDate={this.state.endDate}
-					withPortal
-				/>
-				<DatePicker
-					placeholderText="End Date"
-					selected={this.state.endDate}
-					onChange={(date) => {
-						this.setState(() => ({ endDate: date }));
-					}}
-					selectsEnd
-					startDate={this.state.startDate}
-					endDate={this.state.endDate}
-					minDate={this.state.startDate}
-					withPortal
-				/>
-				<button onClick={this.setDateRangeClicked}>Set Range</button>
-				<button onClick={this.clearDateRangeClicked}>Clear Range</button>
+					<div className="input-group__item">
+						<button onClick={this.setDateRangeClicked}>Set Range</button>
+					</div>
+
+					<div className="input-group__item">
+						<button onClick={this.clearDateRangeClicked}>Clear Range</button>
+					</div>
+				</div>
 			</div>
 		);
 	}
